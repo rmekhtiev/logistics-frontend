@@ -27,6 +27,11 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+
+  plugins: [
+    "~/plugins/reststate-vuex",
+  ],
+
   /*
   ** Build configuration
   */
@@ -34,6 +39,13 @@ module.exports = {
     // Simple usage
     '@nuxtjs/vuetify',
   ],
+  modules: [
+    '@nuxtjs/axios',
+  ],
+
+  axios: {
+  },
+
   build: {
     /*
     ** Run ESLint on save
