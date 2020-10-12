@@ -33,10 +33,8 @@
       <v-toolbar-title>Application</v-toolbar-title>
     </v-app-bar>
 
-    <v-main>
-      <v-container
-        fluid
-      >
+    <v-main style="background-color: rgb(248, 250, 254);">
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-main>
