@@ -6,7 +6,7 @@
       <div class="overline">
         Водитель
       </div>
-      <v-spacer />
+      <v-spacer/>
       <v-btn icon>
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
@@ -26,11 +26,11 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>Курилович Петр Андреевич</v-list-item-title>
+          <v-list-item-title>{{ driver.attributes.name }}</v-list-item-title>
           <v-list-item-subtitle>ФИО</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item two-line>
+      <v-list-item>
         <v-list-item-icon>
           <v-icon color="indigo">
             mdi-car
@@ -38,8 +38,7 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>Хендай Солярис</v-list-item-title>
-          <v-list-item-subtitle>У073НХ197</v-list-item-subtitle>
+          <v-list-item-title>{{ driver.attributes.car }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-list-item two-line>
@@ -50,7 +49,7 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>+79253073114</v-list-item-title>
+          <v-list-item-title> {{ driver.attributes.phone }}</v-list-item-title>
           <v-list-item-subtitle>Телефон</v-list-item-subtitle>
         </v-list-item-content>
 
@@ -64,7 +63,12 @@
 
 <script>
 export default {
-name: "DriverInfoCard"
+  name: "DriverInfoCard",
+  props: {
+    driver: {
+      required: true,
+    }
+  }
 }
 </script>
 

@@ -22,6 +22,7 @@
       right
       dark
       fab
+      @click="openCreateDialog"
     >
       <v-icon>mdi-plus</v-icon>
     </v-btn>
@@ -29,6 +30,8 @@
 </template>
 
 <script>
+
+import ApplicationDialog from "@/components/applications/ApplicationDialog";
 
 export default {
   name: "index",
@@ -52,6 +55,11 @@ export default {
     openApplicationPage(id) {
       this.$router.push({name: 'applications-id', params: {id}})
     },
+    async openCreateDialog() {
+      const res = await this.$dialog.showAndWait(ApplicationDialog, {
+        persistent: true,
+      });
+    }
   }
 }
 </script>

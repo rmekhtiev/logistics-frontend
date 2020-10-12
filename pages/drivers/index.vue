@@ -9,7 +9,7 @@
           <v-data-table
             :headers="headers"
             :items="items"
-            @click:row="(_e, { item }) => openCounterpartyPage(item.id)"
+            @click:row="(_e, { item }) => openDriverPage(item.id)"
           >
           </v-data-table>
         </v-card>
@@ -50,7 +50,7 @@ export default {
     ],
   }),
   methods: {
-    openCounterpartyPage(id) {
+    openDriverPage(id) {
       this.$router.push({name: 'drivers-id', params: {id}})
     },
     async openCreateDialog() {
