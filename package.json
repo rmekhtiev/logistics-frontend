@@ -15,7 +15,8 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
     "@reststate/vuex": "^0.2.2",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vuetify-dialog": "^2.0.12"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.2",
