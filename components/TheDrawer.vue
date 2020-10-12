@@ -49,6 +49,12 @@ export default {
         to: {
           name: 'applications',
         }
+      },
+      cargos: {
+        icon: 'mdi-package-variant-closed',
+        to: {
+          name: 'cargos',
+        }
       }
     }
   }),
