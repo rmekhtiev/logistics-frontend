@@ -30,6 +30,7 @@ module.exports = {
 
   plugins: [
     "~/plugins/reststate-vuex",
+    '~/plugins/vue-i18n',
   ],
 
   /*
