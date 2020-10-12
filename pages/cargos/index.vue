@@ -10,6 +10,20 @@
             :headers="headers"
             :items="items"
           >
+            <template v-slot:item.actions>
+              <v-icon
+                small
+                class="mr-2"
+              >
+                mdi-pencil
+              </v-icon>
+              <v-icon
+                small
+                color="red"
+              >
+                mdi-delete
+              </v-icon>
+            </template>
           </v-data-table>
         </v-card>
       </v-col>
@@ -47,6 +61,7 @@ export default {
     headers: [
       {text: 'Номенаклатура', value: 'attributes.name'},
       {text: 'Вес, кг', value: 'attributes.weight'},
+      {text: 'Действия', value: 'actions'},
     ],
   }),
   methods: {
