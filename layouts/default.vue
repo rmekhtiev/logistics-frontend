@@ -1,41 +1,10 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
-      <v-list dense>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-email</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar
-      app
-      color="indigo"
-      dark
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
+   <the-drawer />
 
     <v-main style="background-color: rgb(248, 250, 254);">
       <v-container fluid>
-        <nuxt />
+        <nuxt/>
       </v-container>
     </v-main>
     <v-footer
@@ -48,9 +17,8 @@
 </template>
 
 <script>
+import TheDrawer from "@/components/TheDrawer";
 export default {
-  data: () => ({
-    drawer: null,
-  }),
+  components: {TheDrawer},
 }
 </script>
