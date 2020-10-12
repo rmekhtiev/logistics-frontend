@@ -1,6 +1,6 @@
 <template>
   <dialog-card
-    title="Создание контрагента"
+    title="Создание водителя"
     :actions="actions"
     :handle="handleClick"
   >
