@@ -2,6 +2,7 @@
   "menu": {
     "drivers": "Водители",
     "applications": "Заявки",
-    "cargos": "Грузы"
+    "cargos": "Грузы",
+    "contacts": "Контактные лица"
   }
 }

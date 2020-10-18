@@ -4,12 +4,12 @@
       <v-col>
         <v-card>
           <v-card-title class="overline">
-            Водители
+            Контактные лица
           </v-card-title>
           <v-data-table
             :headers="headers"
             :items="items"
-            @click:row="(_e, { item }) => openDriverPage(item.id)"
+            @click:row="(_e, { item }) => openContactPage(item.id)"
           >
           </v-data-table>
         </v-card>
@@ -30,32 +30,36 @@
 </template>
 
 <script>
-import DriverDialog from "@/components/drivers/DriverDialog";
 
+import ContactDialog from "~/components/contacts/ContactDialog";
 export default {
   name: "index",
+  components: {ContactDialog},
   data: () => ({
     items: [
       {
         id: 1,
         attributes: {
           name: "Курилович Петр Андреевич",
-          phone: "+79253073114",
-          categories: ['A', 'Б']
+          organization: "ООО Мобильные решения",
+          position: "Менеджер по продажам",
+          phone: "89253073114"
         }
       }
     ],
     headers: [
       {text: 'ФИО', value: 'attributes.name'},
-      {text: 'Категории прав', value: 'attributes.categories'},
+      {text: 'Организация', value: 'attributes.organization'},
+      {text: 'Должность', value: 'attributes.position'},
+      {text: 'Моб.телефон', value: 'attributes.phone'},
     ],
   }),
   methods: {
-    openDriverPage(id) {
-      this.$router.push({name: 'drivers-id', params: {id}})
+    openContactPage(id) {
+      this.$router.push({name: 'contacts-id', params: {id}})
     },
     async openCreateDialog() {
-      const res = await this.$dialog.showAndWait(DriverDialog, {
+      const res = await this.$dialog.showAndWait(ContactDialog, {
         persistent: true,
       });
     }

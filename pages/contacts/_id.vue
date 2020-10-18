@@ -2,25 +2,26 @@
   <div id="driver">
     <v-row>
       <v-col sm="12" md="6" lg="4">
-        <driver-info-card :driver="driver" />
+        <contact-info-card :contact="contact" />
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import DriverInfoCard from "@/components/drivers/DriverInfoCard";
+import ContactInfoCard from "~/components/contacts/ContactInfoCard";
 export default {
   name: "_id",
-  components: {DriverInfoCard},
+  components: {ContactInfoCard},
   data: () => ({
-    driver:
+    contact:
       {
         id: 1,
         attributes: {
           name: "Курилович Петр Андреевич",
-          phone: "+79253073114",
-          categories: ['A', 'Б']
+          organization: "ООО Мобильные решения",
+          position: "Менеджер по продажам",
+          phone: "89253073114"
         }
       },
   }),

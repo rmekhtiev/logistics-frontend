@@ -26,8 +26,20 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ driver.attributes.name }}</v-list-item-title>
+          <v-list-item-title>{{ contact.attributes.name }}</v-list-item-title>
           <v-list-item-subtitle>ФИО</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon color="indigo">
+            mdi-domain
+          </v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>{{ contact.attributes.organization }}</v-list-item-title>
+          <v-list-item-subtitle>{{ contact.attributes.position }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-list-item two-line>
@@ -38,30 +50,13 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title> {{ driver.attributes.phone }}</v-list-item-title>
+          <v-list-item-title> {{ contact.attributes.phone }}</v-list-item-title>
           <v-list-item-subtitle>Телефон</v-list-item-subtitle>
         </v-list-item-content>
 
         <v-list-item-icon>
           <v-icon>mdi-message-text</v-icon>
         </v-list-item-icon>
-      </v-list-item>
-
-      <v-list-item two-line>
-        <v-list-item-icon>
-          <v-icon color="indigo">
-            mdi-account
-          </v-icon>
-        </v-list-item-icon>
-
-        <v-list-item-content>
-          <v-list-item-title>
-            <template v-for="(item) in driver.attributes.categories">
-              {{ item }}
-            </template>
-          </v-list-item-title>
-          <v-list-item-subtitle>Категории прав</v-list-item-subtitle>
-        </v-list-item-content>
       </v-list-item>
     </v-list>
   </v-card>
@@ -71,7 +66,7 @@
 export default {
   name: "DriverInfoCard",
   props: {
-    driver: {
+    contact: {
       required: true,
     }
   }

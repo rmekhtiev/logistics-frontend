@@ -55,6 +55,12 @@ export default {
         to: {
           name: 'cargos',
         }
+      },
+      contacts: {
+        icon: 'mdi-account',
+        to: {
+          name: 'contacts',
+        }
       }
     }
   }),
