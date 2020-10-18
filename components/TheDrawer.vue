@@ -57,9 +57,15 @@ export default {
         }
       },
       contacts: {
-        icon: 'mdi-account',
+        icon: 'mdi-card-account-details',
         to: {
           name: 'contacts',
+        }
+      },
+      cars: {
+        icon: 'mdi-truck-fast',
+        to: {
+          name: 'cars',
         }
       }
     }
