@@ -4,7 +4,7 @@
   >
     <v-card-title>
       <div class="overline">
-        Водитель
+        Контактное лицо
       </div>
       <v-spacer/>
       <v-btn icon>
