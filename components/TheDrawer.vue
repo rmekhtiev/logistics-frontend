@@ -44,6 +44,12 @@ export default {
       {
         title: 'Администирование',
         items: {
+          contracts: {
+            icon: 'mdi-file-document-edit',
+            to: {
+              name: 'contracts',
+            }
+          },
           applications: {
             icon: 'mdi-card-text',
             to: {
