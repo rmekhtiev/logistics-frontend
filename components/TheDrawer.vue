@@ -3,23 +3,26 @@
     <v-navigation-drawer
       v-model="drawer"
       app
+      dense
     >
-      <v-list>
-        <template v-for="(item, key) in items">
-          <v-list-item :key="key" :to="item.to">
-            <v-list-item-avatar>
+      <div v-for="category in categories" :key="category.title">
+        <v-list dense nav>
+          <v-subheader>{{ category.title }}</v-subheader>
+          <v-list-item v-for="(item, key) in category.items" :key="key" :to="item.to">
+            <v-list-item-icon>
               <v-icon>
                 {{ item.icon }}
               </v-icon>
-            </v-list-item-avatar>
+            </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>
                 {{ $t('menu.' + key) }}
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-        </template>
-      </v-list>
+        </v-list>
+        <v-divider/>
+      </div>
     </v-navigation-drawer>
     <v-app-bar
       app
@@ -37,38 +40,48 @@ export default {
   name: "TheDrawer",
   data: () => ({
     drawer: null,
-    items: {
-      drivers: {
-        icon: 'mdi-account',
-        to: {
-          name: 'drivers',
-        }
+    categories: [
+      {
+        title: 'Администирование',
+        items: {
+          applications: {
+            icon: 'mdi-card-text',
+            to: {
+              name: 'applications',
+            }
+          },
+          contacts: {
+            icon: 'mdi-card-account-details',
+            to: {
+              name: 'contacts',
+            }
+          },
+        },
       },
-      applications: {
-        icon: 'mdi-card-text',
-        to: {
-          name: 'applications',
-        }
-      },
-      cargos: {
-        icon: 'mdi-package-variant-closed',
-        to: {
-          name: 'cargos',
-        }
-      },
-      contacts: {
-        icon: 'mdi-card-account-details',
-        to: {
-          name: 'contacts',
-        }
-      },
-      cars: {
-        icon: 'mdi-truck-fast',
-        to: {
-          name: 'cars',
+      {
+        title: 'Ресурсы',
+        items: {
+          cargos: {
+            icon: 'mdi-package-variant-closed',
+            to: {
+              name: 'cargos',
+            }
+          },
+          drivers: {
+            icon: 'mdi-account',
+            to: {
+              name: 'drivers',
+            }
+          },
+          cars: {
+            icon: 'mdi-truck-fast',
+            to: {
+              name: 'cars',
+            }
+          }
         }
       }
-    }
+    ]
   }),
 }
 </script>
