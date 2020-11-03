@@ -1,10 +1,10 @@
 <template>
   <v-form>
-        <v-text-field label="Фамилия" />
-        <v-text-field label="Имя" />
-        <v-text-field label="Отчество" />
-        <v-text-field label="Номер телефона" />
-        <v-select multiple label="Категории прав" :items="categories" />
+    <v-text-field label="Фамилия" v-model="value.last_name"/>
+    <v-text-field label="Имя" v-model="value.first_name"/>
+    <v-text-field label="Отчество" v-model="value.middle_name"/>
+    <v-text-field label="Номер телефона"/>
+    <v-select multiple label="Категории прав" :items="categories" v-model="value.categories"/>
   </v-form>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ items }}
     <v-row>
       <v-col>
         <v-card>
@@ -23,16 +24,6 @@
 export default {
   name: "index",
   data: () => ({
-    items: [
-      {
-        id: 1,
-        attributes: {
-          conclusion_date: "20.04.2012",
-          cost: "2000",
-          payment_type: "Наличные",
-        }
-      },
-    ],
     headers: [
       {text: 'Номер', value: 'id'},
       {text: 'Дата заключения', value: 'attributes.conclusion_date'},
@@ -40,10 +31,21 @@ export default {
       {text: 'Оплата', value: 'attributes.payment_type'},
     ],
   }),
+  computed: {
+    items() {
+      return this.$store.getters['contracts/all'];
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
   methods: {
     openContractPage(id) {
       this.$router.push({name: 'contracts-id', params: {id}})
     },
+    loadItems() {
+      return this.$store.dispatch('contracts/loadAll');
+    }
   }
 }
 </script>

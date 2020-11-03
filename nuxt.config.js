@@ -46,6 +46,13 @@ module.exports = {
   ],
 
   axios: {
+    host: 'localhost',
+    port: 5000,
+    prefix: '/api/v1.0/',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    }
   },
 
   build: {

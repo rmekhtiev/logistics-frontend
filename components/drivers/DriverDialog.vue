@@ -1,10 +1,10 @@
 <template>
   <dialog-card
-    title="Создание водителя"
-    :actions="actions"
-    :handle="handleClick"
+      title="Создание водителя"
+      :actions="actions"
+      :handle="handleClick"
   >
-    <driver-form />
+    <driver-form v-model="editedValue.attributes"/>
   </dialog-card>
 </template>
 

@@ -36,21 +36,20 @@ import ApplicationDialog from "@/components/applications/ApplicationDialog";
 export default {
   name: "index",
   data: () => ({
-    items: [
-      {
-        id: 1,
-        attributes: {
-          name: "Доставка железа",
-          conclusion_date: '24.04.2020'
-        }
-      }
-    ],
     headers: [
       {text: 'Номер', value: 'id'},
       {text: 'Наименование', value: 'attributes.name'},
       {text: 'Дата составления', value: 'attributes.conclusion_date'},
     ],
   }),
+  computed: {
+    items() {
+      return this.$store.getters['applications/all'];
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
   methods: {
     openApplicationPage(id) {
       this.$router.push({name: 'applications-id', params: {id}})
@@ -59,7 +58,11 @@ export default {
       const res = await this.$dialog.showAndWait(ApplicationDialog, {
         persistent: true,
       });
+    },
+    loadItems() {
+      return this.$store.dispatch('applications/loadAll');
     }
+
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ drivers }}
     <v-row>
       <v-col>
         <v-card>
@@ -35,21 +36,20 @@ import DriverDialog from "@/components/drivers/DriverDialog";
 export default {
   name: "index",
   data: () => ({
-    items: [
-      {
-        id: 1,
-        attributes: {
-          name: "Курилович Петр Андреевич",
-          phone: "+79253073114",
-          categories: ['A', 'Б']
-        }
-      }
-    ],
     headers: [
-      {text: 'ФИО', value: 'attributes.name'},
+      {text: 'ФИО', value: 'attributes.first_name'},
       {text: 'Категории прав', value: 'attributes.categories'},
     ],
   }),
+  computed: {
+    items() {
+      return this.$store.getters['drivers/all'];
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
+
   methods: {
     openDriverPage(id) {
       this.$router.push({name: 'drivers-id', params: {id}})
@@ -58,6 +58,14 @@ export default {
       const res = await this.$dialog.showAndWait(DriverDialog, {
         persistent: true,
       });
+      if (res !== false) {
+        let form = res.attributes
+        await this.$axios.post('/drivers', form)
+        this.loadItems();
+      }
+    },
+    loadItems() {
+      return this.$store.dispatch('drivers/loadAll');
     }
   }
 }

@@ -10,7 +10,7 @@
             :headers="headers"
             :items="items"
           >
-            <template v-slot:item.actions>
+            <template v-slot:item.actions="{ item }" v-slot:>
               <v-icon
                 small
                 class="mr-2"
@@ -20,6 +20,7 @@
               <v-icon
                 small
                 color="red"
+                @click="deleteCargo(item)"
               >
                 mdi-delete
               </v-icon>
@@ -49,26 +50,37 @@ import CargoDialog from "@/components/cargos/CargoDialog";
 export default {
   name: "index",
   data: () => ({
-    items: [
-      {
-        id: 1,
-        attributes: {
-          name: "Бревно",
-          weight: "700",
-        }
-      }
-    ],
     headers: [
-      {text: 'Номенаклатура', value: 'attributes.name'},
+      {text: 'Номенаклатура', value: 'attributes.nomenclature'},
       {text: 'Вес, кг', value: 'attributes.weight'},
       {text: 'Действия', value: 'actions'},
     ],
   }),
+  computed: {
+    items() {
+      return this.$store.getters['cargos/all'];
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
   methods: {
     async openCreateDialog() {
       const res = await this.$dialog.showAndWait(CargoDialog, {
         persistent: true,
       });
+      if (res !== false) {
+        let form = res.attributes
+        await this.$axios.post('/cargos', form)
+        this.loadItems();
+      }
+    },
+    async deleteCargo(cargo) {
+      await this.$axios.delete('/cargos/' + cargo.id);
+      this.loadItems();
+    },
+    loadItems() {
+      return this.$store.dispatch('cargos/loadAll');
     }
   }
 }

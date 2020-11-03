@@ -1,6 +1,6 @@
 <template>
-  <v-card
-    outlined
+  <v-card v-if="driver"
+          outlined
   >
     <v-card-title>
       <div class="overline">
@@ -13,6 +13,7 @@
       <v-btn
         icon
         color="red"
+        @click="deleteDriver"
       >
         <v-icon>mdi-delete</v-icon>
       </v-btn>
@@ -74,6 +75,12 @@ export default {
     driver: {
       required: true,
     }
+  },
+  methods: {
+    async deleteDriver() {
+      await this.$axios.delete('/drivers/' + this.driver.id);
+      this.$router.push({name: 'drivers'})
+    },
   }
 }
 </script>

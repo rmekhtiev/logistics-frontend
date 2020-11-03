@@ -10,7 +10,7 @@
             :headers="headers"
             :items="items"
           >
-            <template v-slot:item.actions>
+            <template v-slot:item.actions="{ item }">
               <v-icon
                 small
                 class="mr-2"
@@ -20,6 +20,7 @@
               <v-icon
                 small
                 color="red"
+                @click="deleteCar(item)"
               >
                 mdi-delete
               </v-icon>
@@ -50,29 +51,39 @@ import CarDialog from "~/components/cars/CarDialog";
 export default {
   name: "index",
   data: () => ({
-    items: [
-      {
-        id: 1,
-        attributes: {
-          model: "Хендай Солярис",
-          weight: "700",
-          volume: "700",
-          category: "A",
-        }
-      }
-    ],
     headers: [
       {text: 'Модель', value: 'attributes.model'},
       {text: 'Вес, кг', value: 'attributes.weight'},
       {text: 'Грузоподъемность, кг', value: 'attributes.volume'},
       {text: 'Категория', value: 'attributes.category'},
+      {text: 'Действия', value: 'actions'},
     ],
   }),
+  computed: {
+    items() {
+      return this.$store.getters['cars/all'];
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
   methods: {
     async openCreateDialog() {
       const res = await this.$dialog.showAndWait(CarDialog, {
         persistent: true,
       });
+      if (res !== false) {
+        let form = res.attributes
+        await this.$axios.post('/cars', form)
+        this.loadItems();
+      }
+    },
+    async deleteCar(car) {
+      await this.$axios.delete('/cars/' + car.id);
+      this.loadItems();
+    },
+    loadItems() {
+      return this.$store.dispatch('cars/loadAll');
     }
   }
 }

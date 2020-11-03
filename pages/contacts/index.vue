@@ -35,18 +35,15 @@ import ContactDialog from "~/components/contacts/ContactDialog";
 export default {
   name: "index",
   components: {ContactDialog},
+  computed: {
+    items() {
+      return this.$store.getters['contacts/all'];
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
   data: () => ({
-    items: [
-      {
-        id: 1,
-        attributes: {
-          name: "Курилович Петр Андреевич",
-          organization: "ООО Мобильные решения",
-          position: "Менеджер по продажам",
-          phone: "89253073114"
-        }
-      }
-    ],
     headers: [
       {text: 'ФИО', value: 'attributes.name'},
       {text: 'Организация', value: 'attributes.organization'},
@@ -55,6 +52,9 @@ export default {
     ],
   }),
   methods: {
+    loadItems() {
+      return this.$store.dispatch('contacts/loadAll');
+    },
     openContactPage(id) {
       this.$router.push({name: 'contacts-id', params: {id}})
     },

@@ -1,8 +1,7 @@
 <template>
   <v-form>
-    <v-text-field/>
-    <v-text-field/>
-    <v-text-field/>
+    <v-text-field label="Номенклатура" v-model="value.nomenclature"/>
+    <v-text-field label="Вес, кг" v-model="value.weight"/>
   </v-form>
 </template>
 
