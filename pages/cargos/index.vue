@@ -14,6 +14,7 @@
               <v-icon
                 small
                 class="mr-2"
+                @click="updateCargo(item)"
               >
                 mdi-pencil
               </v-icon>
@@ -72,6 +73,18 @@ export default {
       if (res !== false) {
         let form = res.attributes
         await this.$axios.post('/cargos', form)
+        this.loadItems();
+      }
+    },
+    async updateCargo(cargo) {
+      const dialog = await this.$dialog.showAndWait(CargoDialog, {
+        final: cargo,
+        persistent: true,
+      })
+
+      if (dialog !== false) {
+        const form = dialog.attributes;
+        await this.$axios.put('/cargos/' + cargo.id, form);
         this.loadItems();
       }
     },

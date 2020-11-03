@@ -12,6 +12,16 @@ import resourceForm from "@/mixins/resourceForm";
 
 export default {
   name: "CarForm",
+  props: {
+    value: {
+      type: Object,
+      required: true,
+    },
+    final: {
+      type: Object,
+      default: null,
+    },
+  },
   mixins: [resourceForm],
   data: () => ({
     categories: ['A', 'B', 'C', 'D']

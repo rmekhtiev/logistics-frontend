@@ -14,6 +14,7 @@
               <v-icon
                 small
                 class="mr-2"
+                @click="updateCar(item)"
               >
                 mdi-pencil
               </v-icon>
@@ -75,6 +76,18 @@ export default {
       if (res !== false) {
         let form = res.attributes
         await this.$axios.post('/cars', form)
+        this.loadItems();
+      }
+    },
+    async updateCar(car) {
+      const dialog = await this.$dialog.showAndWait(CarDialog, {
+        final: car,
+        persistent: true,
+      })
+
+      if (dialog !== false) {
+        const form = dialog.attributes;
+        await this.$axios.put('/cars/' + car.id, form);
         this.loadItems();
       }
     },

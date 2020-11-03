@@ -7,7 +7,10 @@
         Водитель
       </div>
       <v-spacer/>
-      <v-btn icon>
+      <v-btn
+        icon
+        @click="updateDriver"
+      >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
       <v-btn
@@ -69,6 +72,8 @@
 </template>
 
 <script>
+import DriverDialog from "~/components/drivers/DriverDialog";
+
 export default {
   name: "DriverInfoCard",
   props: {
@@ -77,10 +82,26 @@ export default {
     }
   },
   methods: {
+    loadDriver() {
+      return this.$store.dispatch('drivers/loadById', {id: this.$route.params.id});
+    },
     async deleteDriver() {
       await this.$axios.delete('/drivers/' + this.driver.id);
       this.$router.push({name: 'drivers'})
     },
+    async updateDriver() {
+      const dialog = await this.$dialog.showAndWait(DriverDialog, {
+        final: this.driver,
+        persistent: true,
+      })
+
+      if (dialog !== false) {
+        const form = dialog.attributes;
+        await this.$axios.put('/drivers/' + this.driver.id, form);
+        this.loadDriver();
+      }
+    },
+
   }
 }
 </script>
