@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ drivers }}
     <v-row>
       <v-col>
         <v-card>

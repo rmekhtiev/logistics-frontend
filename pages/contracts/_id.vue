@@ -2,7 +2,7 @@
   <div id="contract">
     <v-row>
       <v-col sm="12" md="6" lg="4">
-        <contract-info-card :contract="contract"/>
+        <contract-info-card :contract="item"/>
       </v-col>
     </v-row>
   </div>
@@ -10,24 +10,15 @@
 
 <script>
 import ContractInfoCard from "~/components/contracts/ContractInfoCard";
+import resourceInstance from "@/mixins/resourceInstance";
 
 export default {
   name: "_id",
   components: {ContractInfoCard},
-  data: () => ({}),
-  computed: {
-    contract() {
-      return this.$store.getters['contracts/byId']({id: this.$route.params.id});
-    }
-  },
-  mounted() {
-    this.loadItems();
-  },
-  methods: {
-    loadItems() {
-      return this.$store.dispatch('contracts/loadById', {id: this.$route.params.id});
-    }
-  }
+  data: () => ({
+    resource: 'contracts'
+  }),
+  mixins: [resourceInstance]
 }
 </script>
 
