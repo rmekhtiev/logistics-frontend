@@ -7,7 +7,7 @@
         <v-icon @click="addReceiver">mdi-plus</v-icon>
       </v-btn>
       <v-btn icon color="red" v-else>
-        <v-icon @click="deleteReceiver">mdi-minus</v-icon>
+        <v-icon @click="deleteReceiver">mdi-delete</v-icon>
       </v-btn>
     </v-card-title>
     <v-list v-if="receiver">

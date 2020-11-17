@@ -7,7 +7,7 @@
         <v-icon @click="addShipper">mdi-plus</v-icon>
       </v-btn>
       <v-btn icon color="red" v-else>
-        <v-icon @click="deleteShipper">mdi-minus</v-icon>
+        <v-icon @click="deleteShipper">mdi-delete</v-icon>
       </v-btn>
     </v-card-title>
     <v-list v-if="shipper">

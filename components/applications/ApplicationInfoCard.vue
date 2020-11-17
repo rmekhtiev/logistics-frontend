@@ -1,7 +1,7 @@
 <template>
   <v-card
-    outlined
-    v-if="application"
+      outlined
+      v-if="application"
   >
     <v-card-title>
       <div class="overline">
@@ -12,9 +12,9 @@
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
       <v-btn
-        icon
-        color="red"
-        @click="deleteApplication"
+          icon
+          color="red"
+          @click="deleteApplication"
       >
         <v-icon>mdi-delete</v-icon>
       </v-btn>
@@ -28,8 +28,10 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ application.attributes.name }}</v-list-item-title>
-          <v-list-item-subtitle>№ {{ application.id }} от {{ application.attributes.conclusion_date }}</v-list-item-subtitle>
+          <v-list-item-title>{{ application.attributes.name }} № {{ application.id }} от {{
+              application.attributes.conclusion_date
+            }}
+          </v-list-item-title>
           <v-list-item-subtitle>{{ application.attributes.status }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -39,7 +41,6 @@
 
 <script>
 import ApplicationDialog from "@/components/applications/ApplicationDialog";
-import ApplicationReceiverDialog from "@/components/applications/ApplicationReceiverDialog";
 
 export default {
   name: "ApplicationInfoCard",
