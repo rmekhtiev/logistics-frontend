@@ -1,8 +1,8 @@
 <template>
   <dialog-card
-      title="Создание водителя"
-      :actions="actions"
-      :handle="handleClick"
+    title="Создание водителя"
+    :actions="actions"
+    :handle="handleClick"
   >
     <driver-form v-model="editedValue.attributes" :final="final.attributes"/>
   </dialog-card>

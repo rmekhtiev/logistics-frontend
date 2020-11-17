@@ -1,6 +1,6 @@
 <template>
   <dialog-card
-    title="Создание заявки"
+    title="Прикрепление отправителя к заявке"
     :actions="actions"
     :handle="handleClick"
   >

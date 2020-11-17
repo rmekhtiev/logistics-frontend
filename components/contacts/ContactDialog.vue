@@ -4,7 +4,7 @@
     :actions="actions"
     :handle="handleClick"
   >
-    <contact-form v-model="editedValue.attributes" :final="final.attributes" />
+    <contact-form v-model="editedValue.attributes" :final="final.attributes"/>
   </dialog-card>
 </template>
 

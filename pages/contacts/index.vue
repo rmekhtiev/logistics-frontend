@@ -31,6 +31,7 @@
 
 <script>
 import ContactDialog from "~/components/contacts/ContactDialog";
+
 export default {
   name: "index",
   components: {ContactDialog},

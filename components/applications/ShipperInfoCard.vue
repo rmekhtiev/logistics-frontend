@@ -1,60 +1,58 @@
 <template>
-  <div>
-    <v-card class="mb-2" outlined>
-      <v-card-title>
-        <div class="overline">Отправитель</div>
-        <v-spacer/>
-        <v-btn icon color="primary" v-if="!shipper">
-          <v-icon @click="addShipper">mdi-plus</v-icon>
-        </v-btn>
-        <v-btn icon color="red" v-else>
-          <v-icon @click="deleteShipper">mdi-minus</v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-list v-if="shipper">
-        <v-list-item two-line>
-          <v-list-item-icon>
-            <v-icon color="indigo">
-              mdi-account
-            </v-icon>
-          </v-list-item-icon>
+  <v-card class="mb-2" outlined>
+    <v-card-title>
+      <div class="overline">Отправитель</div>
+      <v-spacer/>
+      <v-btn icon color="primary" v-if="!shipper">
+        <v-icon @click="addShipper">mdi-plus</v-icon>
+      </v-btn>
+      <v-btn icon color="red" v-else>
+        <v-icon @click="deleteShipper">mdi-minus</v-icon>
+      </v-btn>
+    </v-card-title>
+    <v-list v-if="shipper">
+      <v-list-item two-line>
+        <v-list-item-icon>
+          <v-icon color="indigo">
+            mdi-account
+          </v-icon>
+        </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ shipper.attributes.name }}</v-list-item-title>
-            <v-list-item-subtitle>ФИО</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon color="indigo">
-              mdi-domain
-            </v-icon>
-          </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ shipper.attributes.name }}</v-list-item-title>
+          <v-list-item-subtitle>ФИО</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon color="indigo">
+            mdi-domain
+          </v-icon>
+        </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ shipper.attributes.organization }}</v-list-item-title>
-            <v-list-item-subtitle>{{ shipper.attributes.position }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item two-line>
-          <v-list-item-icon>
-            <v-icon color="indigo">
-              mdi-phone
-            </v-icon>
-          </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ shipper.attributes.organization }}</v-list-item-title>
+          <v-list-item-subtitle>{{ shipper.attributes.position }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item two-line>
+        <v-list-item-icon>
+          <v-icon color="indigo">
+            mdi-phone
+          </v-icon>
+        </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title> {{ shipper.attributes.phone }}</v-list-item-title>
-            <v-list-item-subtitle>Телефон</v-list-item-subtitle>
-          </v-list-item-content>
+        <v-list-item-content>
+          <v-list-item-title> {{ shipper.attributes.phone }}</v-list-item-title>
+          <v-list-item-subtitle>Телефон</v-list-item-subtitle>
+        </v-list-item-content>
 
-          <v-list-item-icon>
-            <v-icon>mdi-message-text</v-icon>
-          </v-list-item-icon>
-        </v-list-item>
-      </v-list>
-    </v-card>
-  </div>
+        <v-list-item-icon>
+          <v-icon>mdi-message-text</v-icon>
+        </v-list-item-icon>
+      </v-list-item>
+    </v-list>
+  </v-card>
 </template>
 
 <script>

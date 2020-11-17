@@ -4,7 +4,7 @@
     :actions="actions"
     :handle="handleClick"
   >
-    <cargo-form  v-model="editedValue.attributes" :final="final.attributes"/>
+    <cargo-form v-model="editedValue.attributes" :final="final.attributes"/>
   </dialog-card>
 </template>
 

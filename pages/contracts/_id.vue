@@ -2,7 +2,7 @@
   <div id="contract">
     <v-row>
       <v-col sm="12" md="6" lg="4">
-        <contract-info-card :contract="contract" />
+        <contract-info-card :contract="contract"/>
       </v-col>
     </v-row>
   </div>
@@ -10,6 +10,7 @@
 
 <script>
 import ContractInfoCard from "~/components/contracts/ContractInfoCard";
+
 export default {
   name: "_id",
   components: {ContractInfoCard},

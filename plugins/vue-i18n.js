@@ -4,7 +4,7 @@ import ru from '../lang/ru.json'
 
 Vue.use(VueI18n)
 
-export default ({ app }) => {
+export default ({app}) => {
   const i18n = {
     locale: 'ru',
     fallbackLocale: 'en',

@@ -1,6 +1,6 @@
 <template>
   <dialog-card
-    title="Создание заявки"
+    title="Создание договора"
     :actions="actions"
     :handle="handleClick"
   >

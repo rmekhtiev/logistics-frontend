@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-navigation-drawer
-      v-model="drawer"
-      app
-      dense
+        v-model="drawer"
+        app
+        dense
     >
       <div v-for="category in categories" :key="category.title">
         <v-list dense nav>
@@ -25,9 +25,9 @@
       </div>
     </v-navigation-drawer>
     <v-app-bar
-      app
-      color="indigo"
-      dark
+        app
+        color="indigo"
+        dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Logistics</v-toolbar-title>

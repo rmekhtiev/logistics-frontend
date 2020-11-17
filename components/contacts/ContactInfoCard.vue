@@ -1,7 +1,7 @@
 <template>
   <v-card
-      outlined
-      v-if="contact"
+    outlined
+    v-if="contact"
   >
     <v-card-title>
       <div class="overline">
@@ -12,9 +12,9 @@
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
       <v-btn
-          icon
-          color="red"
-          @click="deleteContact"
+        icon
+        color="red"
+        @click="deleteContact"
       >
         <v-icon>mdi-delete</v-icon>
       </v-btn>

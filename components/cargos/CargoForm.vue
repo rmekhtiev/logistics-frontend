@@ -10,16 +10,6 @@ import resourceForm from "@/mixins/resourceForm";
 
 export default {
   name: "CargoForm",
-  props: {
-    value: {
-      type: Object,
-      required: true,
-    },
-    final: {
-      type: Object,
-      default: null,
-    },
-  },
   mixins: [resourceForm]
 }
 </script>
