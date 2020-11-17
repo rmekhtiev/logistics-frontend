@@ -1,18 +1,20 @@
 <template>
   <v-card
     outlined
+    v-if="contract"
   >
     <v-card-title>
       <div class="overline">
         Договор
       </div>
       <v-spacer/>
-      <v-btn icon>
+      <v-btn icon @click="updateContract">
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
       <v-btn
         icon
         color="red"
+        @click="deleteContract"
       >
         <v-icon>mdi-delete</v-icon>
       </v-btn>
@@ -35,12 +37,36 @@
 </template>
 
 <script>
+import ContractDialog from "@/components/contracts/ContractDialog";
+
 export default {
   name: "ContractInfoCard",
   props: {
     contract: {
       required: true,
     }
+  },
+  methods: {
+    loadContract() {
+      return this.$store.dispatch('contracts/loadById', {id: this.$route.params.id});
+    },
+    async deleteContract() {
+      await this.$axios.delete('/contracts/' + this.contract.id);
+      this.$router.push({name: 'contracts'})
+    },
+    async updateContract() {
+      const dialog = await this.$dialog.showAndWait(ContractDialog, {
+        final: this.contract,
+        persistent: true,
+      })
+
+      if (dialog !== false) {
+        const form = dialog.attributes;
+        await this.$axios.put('/contracts/' + this.contract.id, form);
+        this.loadContract();
+      }
+    },
+
   }
 }
 </script>

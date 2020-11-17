@@ -1,6 +1,7 @@
 <template>
-  <v-card v-if="driver"
-          outlined
+  <v-card
+    v-if="driver"
+    outlined
   >
     <v-card-title>
       <div class="overline">

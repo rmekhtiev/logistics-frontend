@@ -37,7 +37,7 @@ export default {
   name: "index",
   data: () => ({
     headers: [
-      {text: 'ФИО', value: 'attributes.first_name'},
+      {text: 'ФИО', value: 'attributes.name'},
       {text: 'Категории прав', value: 'attributes.categories'},
     ],
   }),

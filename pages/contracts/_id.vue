@@ -13,17 +13,20 @@ import ContractInfoCard from "~/components/contracts/ContractInfoCard";
 export default {
   name: "_id",
   components: {ContractInfoCard},
-  data: () => ({
-    contract:
-      {
-        id: 1,
-        attributes: {
-          conclusion_date: "20.04.2012",
-          cost: "2000",
-          payment_type: "Наличные",
-        }
-      },
-  }),
+  data: () => ({}),
+  computed: {
+    contract() {
+      return this.$store.getters['contracts/byId']({id: this.$route.params.id});
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
+  methods: {
+    loadItems() {
+      return this.$store.dispatch('contracts/loadById', {id: this.$route.params.id});
+    }
+  }
 }
 </script>
 

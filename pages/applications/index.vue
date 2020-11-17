@@ -58,6 +58,11 @@ export default {
       const res = await this.$dialog.showAndWait(ApplicationDialog, {
         persistent: true,
       });
+      if (res !== false) {
+        let form = res.attributes
+        await this.$axios.post('/applications', form)
+        this.loadItems();
+      }
     },
     loadItems() {
       return this.$store.dispatch('applications/loadAll');

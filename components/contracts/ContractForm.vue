@@ -1,7 +1,8 @@
 <template>
   <v-form>
-    <v-text-field label="Наименование" v-model="value.name"/>
-    <v-text-field label="Дата заключения" v-model="value.conclusion_date"/>
+    <v-text-field />
+    <v-text-field />
+    <v-text-field />
   </v-form>
 </template>
 

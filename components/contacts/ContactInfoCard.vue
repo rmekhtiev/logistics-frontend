@@ -1,18 +1,20 @@
 <template>
   <v-card
-    outlined
+      outlined
+      v-if="contact"
   >
     <v-card-title>
       <div class="overline">
         Контактное лицо
       </div>
       <v-spacer/>
-      <v-btn icon>
+      <v-btn icon @click="updateContact">
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
       <v-btn
-        icon
-        color="red"
+          icon
+          color="red"
+          @click="deleteContact"
       >
         <v-icon>mdi-delete</v-icon>
       </v-btn>
@@ -63,12 +65,37 @@
 </template>
 
 <script>
+import ContactDialog from "~/components/contacts/ContactDialog";
+
 export default {
-  name: "DriverInfoCard",
+  name: "ContactInfoCard",
   props: {
     contact: {
       required: true,
-    }
+    },
+  },
+  methods: {
+    async deleteContact() {
+      await this.$axios.delete('/contacts/' + this.contact.id);
+      this.$router.push({name: 'contacts'})
+    },
+    async updateContact() {
+      const dialog = await this.$dialog.showAndWait(ContactDialog, {
+        final: this.contact,
+        persistent: true,
+      })
+
+      if (dialog !== false) {
+        const form = dialog.attributes;
+        await this.$axios.put('/contacts/' + this.contact.id, form);
+        this.loadContact();
+
+      }
+    },
+    loadContact() {
+      return this.$store.dispatch('contacts/loadById', {id: this.$route.params.id});
+    },
+
   }
 }
 </script>

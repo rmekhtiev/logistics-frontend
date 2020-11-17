@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ items }}
     <v-row>
       <v-col>
         <v-card>

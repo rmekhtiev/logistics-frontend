@@ -30,7 +30,6 @@
 </template>
 
 <script>
-
 import ContactDialog from "~/components/contacts/ContactDialog";
 export default {
   name: "index",
@@ -62,6 +61,11 @@ export default {
       const res = await this.$dialog.showAndWait(ContactDialog, {
         persistent: true,
       });
+      if (res !== false) {
+        let form = res.attributes
+        await this.$axios.post('/contacts', form)
+        this.loadItems();
+      }
     }
   }
 }

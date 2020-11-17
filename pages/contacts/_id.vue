@@ -2,7 +2,7 @@
   <div id="driver">
     <v-row>
       <v-col sm="12" md="6" lg="4">
-        <contact-info-card :contact="contact" />
+        <contact-info-card :contact="contact"/>
       </v-col>
     </v-row>
   </div>
@@ -10,21 +10,23 @@
 
 <script>
 import ContactInfoCard from "~/components/contacts/ContactInfoCard";
+
 export default {
   name: "_id",
   components: {ContactInfoCard},
-  data: () => ({
-    contact:
-      {
-        id: 1,
-        attributes: {
-          name: "Курилович Петр Андреевич",
-          organization: "ООО Мобильные решения",
-          position: "Менеджер по продажам",
-          phone: "89253073114"
-        }
-      },
-  }),
+  computed: {
+    contact() {
+      return this.$store.getters['contacts/byId']({id: this.$route.params.id});
+    }
+  },
+  mounted() {
+    this.loadItems();
+  },
+  methods: {
+    loadItems() {
+      return this.$store.dispatch('contacts/loadById', {id: this.$route.params.id});
+    }
+  }
 }
 </script>
 
