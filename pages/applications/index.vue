@@ -9,7 +9,7 @@
           <v-data-table
             :headers="headers"
             :items="items"
-            @click:row="(_e, { item }) => openApplicationPage(item.id)"
+            @click:row="(_e, { item }) => openResourceInstancePage(item.id)"
           >
           </v-data-table>
         </v-card>
@@ -32,41 +32,30 @@
 <script>
 
 import ApplicationDialog from "@/components/applications/ApplicationDialog";
+import resource from "@/mixins/resource";
 
 export default {
   name: "index",
   data: () => ({
+    resource: "applications",
     headers: [
       {text: 'Номер', value: 'id'},
       {text: 'Наименование', value: 'attributes.name'},
       {text: 'Дата составления', value: 'attributes.conclusion_date'},
     ],
   }),
-  computed: {
-    items() {
-      return this.$store.getters['applications/all'];
-    }
-  },
-  mounted() {
-    this.loadItems();
-  },
+  mixins: [resource],
   methods: {
-    openApplicationPage(id) {
-      this.$router.push({name: 'applications-id', params: {id}})
-    },
     async openCreateDialog() {
-      const res = await this.$dialog.showAndWait(ApplicationDialog, {
+      const dialog = await this.$dialog.showAndWait(ApplicationDialog, {
         persistent: true,
       });
-      if (res !== false) {
-        let form = res.attributes
+      if (dialog !== false) {
+        let form = dialog.attributes
         await this.$axios.post('/applications', form)
         this.loadItems();
       }
     },
-    loadItems() {
-      return this.$store.dispatch('applications/loadAll');
-    }
 
   }
 }

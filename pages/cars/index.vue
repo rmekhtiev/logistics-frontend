@@ -48,10 +48,12 @@
 
 
 import CarDialog from "~/components/cars/CarDialog";
+import resource from "@/mixins/resource";
 
 export default {
   name: "index",
   data: () => ({
+    resource: "cars",
     headers: [
       {text: 'Модель', value: 'attributes.model'},
       {text: 'Вес, кг', value: 'attributes.weight'},
@@ -60,21 +62,14 @@ export default {
       {text: 'Действия', value: 'actions'},
     ],
   }),
-  computed: {
-    items() {
-      return this.$store.getters['cars/all'];
-    }
-  },
-  mounted() {
-    this.loadItems();
-  },
+  mixins: [resource],
   methods: {
     async openCreateDialog() {
-      const res = await this.$dialog.showAndWait(CarDialog, {
+      const dialog = await this.$dialog.showAndWait(CarDialog, {
         persistent: true,
       });
-      if (res !== false) {
-        let form = res.attributes
+      if (dialog !== false) {
+        let form = dialog.attributes
         await this.$axios.post('/cars', form)
         this.loadItems();
       }
@@ -95,9 +90,6 @@ export default {
       await this.$axios.delete('/cars/' + car.id);
       this.loadItems();
     },
-    loadItems() {
-      return this.$store.dispatch('cars/loadAll');
-    }
   }
 }
 </script>

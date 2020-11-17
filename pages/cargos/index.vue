@@ -47,31 +47,26 @@
 <script>
 
 import CargoDialog from "@/components/cargos/CargoDialog";
+import resource from "@/mixins/resource";
 
 export default {
   name: "index",
   data: () => ({
+    resource: "cargos",
     headers: [
       {text: 'Номенаклатура', value: 'attributes.nomenclature'},
       {text: 'Вес, кг', value: 'attributes.weight'},
       {text: 'Действия', value: 'actions'},
     ],
   }),
-  computed: {
-    items() {
-      return this.$store.getters['cargos/all'];
-    }
-  },
-  mounted() {
-    this.loadItems();
-  },
+  mixins: [resource],
   methods: {
     async openCreateDialog() {
-      const res = await this.$dialog.showAndWait(CargoDialog, {
+      const dialog = await this.$dialog.showAndWait(CargoDialog, {
         persistent: true,
       });
-      if (res !== false) {
-        let form = res.attributes
+      if (dialog !== false) {
+        let form = dialog.attributes
         await this.$axios.post('/cargos', form)
         this.loadItems();
       }
@@ -92,9 +87,6 @@ export default {
       await this.$axios.delete('/cargos/' + cargo.id);
       this.loadItems();
     },
-    loadItems() {
-      return this.$store.dispatch('cargos/loadAll');
-    }
   }
 }
 </script>

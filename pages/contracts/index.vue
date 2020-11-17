@@ -9,20 +9,35 @@
           <v-data-table
             :headers="headers"
             :items="items"
-            @click:row="(_e, { item }) => openContractPage(item.id)"
+            @click:row="(_e, { item }) => openResourceInstancePage(item.id)"
           >
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
+    <v-btn
+      color="primary"
+      fixed
+      bottom
+      right
+      dark
+      fab
+      @click="openCreateDialog"
+    >
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
   </div>
 </template>
 
 <script>
 
+import resource from "@/mixins/resource";
+import ContractDialog from "@/components/contracts/ContractDialog";
+
 export default {
   name: "index",
   data: () => ({
+    resource: "contracts",
     headers: [
       {text: 'Номер', value: 'id'},
       {text: 'Дата заключения', value: 'attributes.conclusion_date'},
@@ -30,21 +45,18 @@ export default {
       {text: 'Оплата', value: 'attributes.payment_type'},
     ],
   }),
-  computed: {
-    items() {
-      return this.$store.getters['contracts/all'];
-    }
-  },
-  mounted() {
-    this.loadItems();
-  },
+  mixins: [resource],
   methods: {
-    openContractPage(id) {
-      this.$router.push({name: 'contracts-id', params: {id}})
+    async openCreateDialog() {
+      const dialog = await this.$dialog.showAndWait(ContractDialog, {
+        persistent: true,
+      });
+      if (dialog !== false) {
+        let form = dialog.attributes
+        await this.$axios.post('/contracts', form)
+        this.loadItems();
+      }
     },
-    loadItems() {
-      return this.$store.dispatch('contracts/loadAll');
-    }
   }
 }
 </script>

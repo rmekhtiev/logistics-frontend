@@ -10,7 +10,7 @@
           <v-data-table
             :headers="headers"
             :items="items"
-            @click:row="(_e, { item }) => openDriverPage(item.id)"
+            @click:row="(_e, { item }) => openResourceInstancePage(item.id)"
           >
           </v-data-table>
         </v-card>
@@ -32,41 +32,30 @@
 
 <script>
 import DriverDialog from "@/components/drivers/DriverDialog";
+import resource from "@/mixins/resource";
 
 export default {
   name: "index",
   data: () => ({
+    resource: "drivers",
     headers: [
       {text: 'ФИО', value: 'attributes.name'},
       {text: 'Категории прав', value: 'attributes.categories'},
     ],
   }),
-  computed: {
-    items() {
-      return this.$store.getters['drivers/all'];
-    }
-  },
-  mounted() {
-    this.loadItems();
-  },
+  mixins: [resource],
 
   methods: {
-    openDriverPage(id) {
-      this.$router.push({name: 'drivers-id', params: {id}})
-    },
     async openCreateDialog() {
-      const res = await this.$dialog.showAndWait(DriverDialog, {
+      const dialog = await this.$dialog.showAndWait(DriverDialog, {
         persistent: true,
       });
-      if (res !== false) {
-        let form = res.attributes
+      if (dialog !== false) {
+        let form = dialog.attributes
         await this.$axios.post('/drivers', form)
         this.loadItems();
       }
     },
-    loadItems() {
-      return this.$store.dispatch('drivers/loadAll');
-    }
   }
 }
 </script>
