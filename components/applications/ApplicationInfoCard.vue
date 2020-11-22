@@ -32,7 +32,7 @@
               application.attributes.conclusion_date
             }}
           </v-list-item-title>
-          <v-list-item-subtitle>{{ application.attributes.status }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ $t('statuses.' + application.attributes.status) }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>

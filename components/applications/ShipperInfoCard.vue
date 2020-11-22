@@ -84,6 +84,7 @@ export default {
       if (dialog !== false) {
         const form = dialog.attributes;
         await this.$axios.put('/applications/' + this.application.id, form).then((response) => {
+          console.log(response);
           this.loadContact(response.data.data.attributes.shipper_id);
           this.loadApplication();
         });

@@ -1,6 +1,6 @@
 <template>
   <dialog-card
-    title="Прикрепление транспортного средства к заявке"
+    title="Прикрепление т/c к заявке"
     :actions="actions"
     :handle="handleClick"
   >

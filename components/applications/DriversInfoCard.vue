@@ -68,11 +68,8 @@ export default {
       }
     },
 
-    async deleteReceiver() {
-      let form = {
-        ...this.application.attributes,
-        receiver_id: null
-      }
+    async deleteDriver() {
+
     },
     loadApplication() {
       return this.$store.dispatch('applications/loadById', {id: this.$route.params.id});

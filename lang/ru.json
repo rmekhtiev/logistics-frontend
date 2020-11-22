@@ -6,5 +6,9 @@
     "contacts": "Контактные лица",
     "cars": "Т/С",
     "contracts": "Договоры"
+  },
+  "statuses": {
+    "active": "Активная",
+    "finished": "Завершенная"
   }
 }

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import ApplicationDriversDialog from "@/components/applications/ApplicationDriversDialog";
+import ApplicationCarsDialog from "@/components/applications/ApplicationCarsDialog";
 
 export default {
   name: "CarsInfoCard",
@@ -57,7 +57,7 @@ export default {
   }),
   methods: {
     async addCar() {
-      const dialog = await this.$dialog.showAndWait(ApplicationDriversDialog, {
+      const dialog = await this.$dialog.showAndWait(ApplicationCarsDialog, {
         final: this.application,
         persistent: true,
       })
@@ -67,11 +67,8 @@ export default {
       }
     },
 
-    async deleteReceiver() {
-      let form = {
-        ...this.application.attributes,
-        receiver_id: null
-      }
+    async deleteCar() {
+
     },
     loadApplication() {
       return this.$store.dispatch('applications/loadById', {id: this.$route.params.id});

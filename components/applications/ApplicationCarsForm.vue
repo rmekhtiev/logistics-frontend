@@ -1,6 +1,6 @@
 <template>
   <v-form>
-    <v-autocomplete v-model="value.car_id" :items="items" item-text="attributes.name"
+    <v-autocomplete v-model="value.car_id" :items="items" item-text="attributes.model"
                     item-value="id"/>
   </v-form>
 </template>
