@@ -9,6 +9,7 @@
       <v-col sm="12" md="6" lg="4">
         <drivers-info-card :application="item" />
         <cars-info-card :application="item" />
+        <route-info-card :application="item" />
       </v-col>
     </v-row>
   </div>
@@ -21,10 +22,11 @@ import ShipperInfoCard from "@/components/applications/ShipperInfoCard";
 import resourceInstance from "@/mixins/resourceInstance";
 import DriversInfoCard from "@/components/applications/DriversInfoCard";
 import CarsInfoCard from "@/components/applications/CarsInfoCard";
+import RouteInfoCard from "@/components/applications/RouteInfoCard";
 
 export default {
   name: "_id",
-  components: {CarsInfoCard, DriversInfoCard, ShipperInfoCard, ReceiverInfoCard, ApplicationInfoCard},
+  components: {RouteInfoCard, CarsInfoCard, DriversInfoCard, ShipperInfoCard, ReceiverInfoCard, ApplicationInfoCard},
   data: () => ({
     resource: 'applications'
   }),

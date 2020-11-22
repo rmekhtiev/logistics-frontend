@@ -9,5 +9,6 @@ export default function ({$axios, store}) {
   store.registerModule('clients', resourceModule({name: 'clients', httpClient: $axios}));
   store.registerModule('applications', resourceModule({name: 'applications', httpClient: $axios}));
   store.registerModule('requisites', resourceModule({name: 'requisites', httpClient: $axios}));
+  store.registerModule('routes', resourceModule({name: 'routes', httpClient: $axios}));
 }
 
