@@ -8,7 +8,7 @@
       <v-btn icon color="primary" v-if="!application">
         <v-icon >mdi-plus</v-icon>
       </v-btn>
-      <v-btn icon color="red" v-else>
+      <v-btn icon color="red" @click="deleteApplications" v-else>
         <v-icon>mdi-delete</v-icon>
       </v-btn>
     </v-card-title>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import ContractApplicationDialog from "@/components/contracts/ContractApplicationDialog";
+
 export default {
   name: "ContractApplicationInfoCard",
   props: {
@@ -50,7 +52,7 @@ export default {
   },
   methods: {
     async addApplications() {
-      const dialog = await this.$dialog.showAndWait('', {
+      const dialog = await this.$dialog.showAndWait(ContractApplicationDialog, {
         final: this.contract,
         persistent: true,
       })

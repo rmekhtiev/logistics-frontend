@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import ContractRequisitesDialog from "@/components/contracts/ContractRequisitesDialog";
+
 export default {
   name: "ContractRequisitesInfoCard",
   props: {
@@ -71,7 +73,7 @@ export default {
   },
   methods: {
     async addRequisites() {
-      const dialog = await this.$dialog.showAndWait('', {
+      const dialog = await this.$dialog.showAndWait(ContractRequisitesDialog, {
         final: this.contract,
         persistent: true,
       })

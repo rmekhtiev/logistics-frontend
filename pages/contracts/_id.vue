@@ -3,7 +3,6 @@
     <v-row>
       <v-col sm="12" md="6" lg="4">
         <contract-info-card class="mb-2" :contract="item"/>
-        <contract-payment-info-card class="mb-2" :contract="item"/>
         <contract-application-info-card class="mb-2" :contract="item"/>
       </v-col>
       <v-col sm="12" md="6" lg="4">

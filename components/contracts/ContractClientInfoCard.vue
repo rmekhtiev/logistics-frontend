@@ -8,7 +8,7 @@
       <v-btn icon color="primary" v-if="!client">
         <v-icon >mdi-plus</v-icon>
       </v-btn>
-      <v-btn icon color="red" v-else>
+      <v-btn icon color="red" @click="deleteClients" v-else>
         <v-icon>mdi-delete</v-icon>
       </v-btn>
     </v-card-title>
@@ -68,6 +68,8 @@
 </template>
 
 <script>
+import ContractClientDialog from "@/components/contracts/ContractClientDialog";
+
 export default {
   name: "ContractClientInfoCard",
   props: {
@@ -85,7 +87,7 @@ export default {
   },
   methods: {
     async addClients() {
-      const dialog = await this.$dialog.showAndWait('', {
+      const dialog = await this.$dialog.showAndWait(ContractClientDialog, {
         final: this.contract,
         persistent: true,
       })

@@ -33,6 +33,24 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+
+    <div class="overline px-4">
+      Оплата
+    </div>
+    <v-list>
+      <v-list-item two-line>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t('paymentTypes.' + contract.attributes.payment_type) }}</v-list-item-title>
+          <v-list-item-subtitle>Способ оплаты</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item two-line>
+        <v-list-item-content>
+          <v-list-item-title>{{ contract.attributes.cost }}</v-list-item-title>
+          <v-list-item-subtitle>Стоимость</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </v-card>
 </template>
 
