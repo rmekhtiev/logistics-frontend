@@ -62,6 +62,12 @@ export default {
               name: 'contacts',
             }
           },
+          clients: {
+            icon: 'mdi-card-account-details-star',
+            to: {
+              name: 'clients',
+            }
+          },
         },
       },
       {

@@ -8,20 +8,20 @@
       </v-btn>
     </v-card-title>
     <v-card-text>
-      <v-list>
-        <v-list-item v-for="driver in drivers" :key="driver.id">
-          <v-list-item-content>
-            <v-list-item-title> {{ driver.name }}</v-list-item-title>
-            <v-list-item-subtitle>{{ driver.phone }}</v-list-item-subtitle>
-          </v-list-item-content>
+<!--      <v-list>-->
+<!--        <v-list-item v-for="driver in drivers" :key="driver.id">-->
+<!--          <v-list-item-content>-->
+<!--            <v-list-item-title> {{ driver.name }}</v-list-item-title>-->
+<!--            <v-list-item-subtitle>{{ driver.phone }}</v-list-item-subtitle>-->
+<!--          </v-list-item-content>-->
 
-          <v-list-item-icon>
-            <v-btn icon small>
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          </v-list-item-icon>
-        </v-list-item>
-      </v-list>
+<!--          <v-list-item-icon>-->
+<!--            <v-btn icon small>-->
+<!--              <v-icon>mdi-delete</v-icon>-->
+<!--            </v-btn>-->
+<!--          </v-list-item-icon>-->
+<!--        </v-list-item>-->
+<!--      </v-list>-->
     </v-card-text>
   </v-card>
 </template>
@@ -38,24 +38,13 @@ export default {
     }
   },
   data: () => ({
-    drivers: [
-      {
-        id: 1,
-        name: 'Kurilovich',
-        phone: '89228228228'
-      },
-      {
-        id: 2,
-        name: 'Kurilovich',
-        phone: '89228228228'
-      },
-      {
-        id: 3,
-        name: 'Kurilovich',
-        phone: '89228228228'
-      }
-    ]
+
   }),
+
+  mounted() {
+    this.loadDrivers();
+  },
+
   methods: {
     async addDriver() {
       const dialog = await this.$dialog.showAndWait(ApplicationDriversDialog, {
@@ -65,12 +54,18 @@ export default {
 
       if (dialog !== false) {
         const form = dialog.attributes;
+        await this.$axios.post(`applications/${this.application.id}/drivers`, form);
+        this.loadApplication();
       }
     },
 
     async deleteDriver() {
 
     },
+    loadDrivers() {
+      return this.$axios.get(`applications/${this.application.id}/drivers`);
+    },
+
     loadApplication() {
       return this.$store.dispatch('applications/loadById', {id: this.$route.params.id});
     },

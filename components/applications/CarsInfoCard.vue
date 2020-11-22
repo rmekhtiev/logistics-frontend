@@ -9,18 +9,18 @@
     </v-card-title>
     <v-card-text>
       <v-list>
-        <v-list-item v-for="car in cars" :key="car.id">
-          <v-list-item-content>
-            <v-list-item-title> {{ car.model }}</v-list-item-title>
-            <v-list-item-subtitle>{{ car.volume }}, кг</v-list-item-subtitle>
-          </v-list-item-content>
+<!--        <v-list-item v-for="car in cars" :key="car.id">-->
+<!--          <v-list-item-content>-->
+<!--            <v-list-item-title> {{ car.model }}</v-list-item-title>-->
+<!--            <v-list-item-subtitle>{{ car.volume }}, кг</v-list-item-subtitle>-->
+<!--          </v-list-item-content>-->
 
-          <v-list-item-icon>
-            <v-btn icon small>
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          </v-list-item-icon>
-        </v-list-item>
+<!--          <v-list-item-icon>-->
+<!--            <v-btn icon small>-->
+<!--              <v-icon>mdi-delete</v-icon>-->
+<!--            </v-btn>-->
+<!--          </v-list-item-icon>-->
+<!--        </v-list-item>-->
       </v-list>
     </v-card-text>
   </v-card>
@@ -37,23 +37,7 @@ export default {
     }
   },
   data: () => ({
-    cars: [
-      {
-        id: 1,
-        model: 'Solaris',
-        volume: 228
-      },
-      {
-        id: 2,
-        model: 'Solaris',
-        volume: 228
-      },
-      {
-        id: 3,
-        model: 'Solaris',
-        volume: 228
-      },
-    ]
+
   }),
   methods: {
     async addCar() {
@@ -64,6 +48,8 @@ export default {
 
       if (dialog !== false) {
         const form = dialog.attributes;
+        await this.$axios.post(`applications/${this.application.id}/cars`, form);
+        this.loadApplication();
       }
     },
 

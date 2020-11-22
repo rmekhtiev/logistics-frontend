@@ -4,7 +4,9 @@
     <v-text-field label="Имя" v-model="value.first_name"/>
     <v-text-field label="Отчество" v-model="value.middle_name"/>
     <v-text-field label="Номер телефона" v-model="value.phone"/>
-    <v-select multiple label="Категории прав" :items="categories" v-model="value.categories"/>
+    <v-text-field label="Email" v-model="value.email"/>
+    <v-text-field label="Серия паспорта" v-model="value.passport_series"/>
+    <v-text-field label="Номер паспорта" v-model="value.passport_number"/>
   </v-form>
 </template>
 
@@ -12,11 +14,8 @@
 import resourceForm from "@/mixins/resourceForm";
 
 export default {
-  name: "DriverForm",
+  name: "ClientForm",
   mixins: [resourceForm],
-  data: () => ({
-    categories: ['A', 'B', 'C', 'D']
-  })
 }
 </script>
 

@@ -5,7 +5,8 @@
     "cargos": "Грузы",
     "contacts": "Контактные лица",
     "cars": "Т/С",
-    "contracts": "Договоры"
+    "contracts": "Договоры",
+    "clients": "Клиенты"
   },
   "statuses": {
     "active": "Активная",

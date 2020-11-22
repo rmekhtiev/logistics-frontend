@@ -6,6 +6,8 @@ export default function ({$axios, store}) {
   store.registerModule('cargos', resourceModule({name: 'cargos', httpClient: $axios}));
   store.registerModule('contacts', resourceModule({name: 'contacts', httpClient: $axios}));
   store.registerModule('contracts', resourceModule({name: 'contracts', httpClient: $axios}));
+  store.registerModule('clients', resourceModule({name: 'clients', httpClient: $axios}));
   store.registerModule('applications', resourceModule({name: 'applications', httpClient: $axios}));
+  store.registerModule('requisites', resourceModule({name: 'requisites', httpClient: $axios}));
 }
 
