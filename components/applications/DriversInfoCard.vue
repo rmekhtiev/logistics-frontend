@@ -7,27 +7,26 @@
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-card-title>
-    <v-card-text>
-<!--      <v-list>-->
-<!--        <v-list-item v-for="driver in drivers" :key="driver.id">-->
-<!--          <v-list-item-content>-->
-<!--            <v-list-item-title> {{ driver.name }}</v-list-item-title>-->
-<!--            <v-list-item-subtitle>{{ driver.phone }}</v-list-item-subtitle>-->
-<!--          </v-list-item-content>-->
+    <v-card-text v-if="drivers">
+      <v-list>
+        <v-list-item v-for="driver in drivers" :key="driver.id">
+          <v-list-item-content>
+            <v-list-item-title> {{ driver.attributes.name }}</v-list-item-title>
+            <v-list-item-subtitle>{{ driver.attributes.phone }}</v-list-item-subtitle>
+          </v-list-item-content>
 
-<!--          <v-list-item-icon>-->
-<!--            <v-btn icon small>-->
-<!--              <v-icon>mdi-delete</v-icon>-->
-<!--            </v-btn>-->
-<!--          </v-list-item-icon>-->
-<!--        </v-list-item>-->
-<!--      </v-list>-->
+          <v-list-item-icon>
+            <v-btn icon small>
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </v-list-item-icon>
+        </v-list-item>
+      </v-list>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import ApplicationReceiverDialog from "@/components/applications/ApplicationReceiverDialog";
 import ApplicationDriversDialog from "@/components/applications/ApplicationDriversDialog";
 
 export default {
@@ -37,10 +36,12 @@ export default {
       required: true,
     }
   },
-  data: () => ({
 
-  }),
-
+  computed: {
+    drivers() {
+      return this.$store.getters.allDrivers;
+    }
+  },
   mounted() {
     this.loadDrivers();
   },
@@ -55,6 +56,7 @@ export default {
       if (dialog !== false) {
         const form = dialog.attributes;
         await this.$axios.post(`applications/${this.application.id}/drivers`, form);
+        this.loadDrivers();
         this.loadApplication();
       }
     },
@@ -63,7 +65,7 @@ export default {
 
     },
     loadDrivers() {
-      return this.$axios.get(`applications/${this.application.id}/drivers`);
+      this.$store.dispatch('fetchDriversForApplication', this.application.id);
     },
 
     loadApplication() {

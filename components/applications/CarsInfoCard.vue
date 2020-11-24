@@ -9,18 +9,18 @@
     </v-card-title>
     <v-card-text>
       <v-list>
-<!--        <v-list-item v-for="car in cars" :key="car.id">-->
-<!--          <v-list-item-content>-->
-<!--            <v-list-item-title> {{ car.model }}</v-list-item-title>-->
-<!--            <v-list-item-subtitle>{{ car.volume }}, кг</v-list-item-subtitle>-->
-<!--          </v-list-item-content>-->
+        <v-list-item v-for="car in cars" :key="car.id">
+          <v-list-item-content>
+            <v-list-item-title> {{ car.attributes.model }}</v-list-item-title>
+            <v-list-item-subtitle>{{ car.attributes.volume }}, кг</v-list-item-subtitle>
+          </v-list-item-content>
 
-<!--          <v-list-item-icon>-->
-<!--            <v-btn icon small>-->
-<!--              <v-icon>mdi-delete</v-icon>-->
-<!--            </v-btn>-->
-<!--          </v-list-item-icon>-->
-<!--        </v-list-item>-->
+          <v-list-item-icon>
+            <v-btn icon small>
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </v-list-item-icon>
+        </v-list-item>
       </v-list>
     </v-card-text>
   </v-card>
@@ -36,9 +36,14 @@ export default {
       required: true,
     }
   },
-  data: () => ({
-
-  }),
+  computed: {
+    cars() {
+      return this.$store.getters.allCars;
+    }
+  },
+  mounted() {
+    this.loadCars();
+  },
   methods: {
     async addCar() {
       const dialog = await this.$dialog.showAndWait(ApplicationCarsDialog, {
@@ -49,12 +54,16 @@ export default {
       if (dialog !== false) {
         const form = dialog.attributes;
         await this.$axios.post(`applications/${this.application.id}/cars`, form);
+        this.loadCars();
         this.loadApplication();
       }
     },
 
     async deleteCar() {
 
+    },
+    loadCars() {
+      this.$store.dispatch('fetchCarsForApplication', this.application.id);
     },
     loadApplication() {
       return this.$store.dispatch('applications/loadById', {id: this.$route.params.id});
