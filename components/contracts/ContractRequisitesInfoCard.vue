@@ -76,6 +76,7 @@ export default {
       const dialog = await this.$dialog.showAndWait(ContractRequisitesDialog, {
         final: this.contract,
         persistent: true,
+        axios: this.$axios,
       })
 
       if (dialog !== false) {

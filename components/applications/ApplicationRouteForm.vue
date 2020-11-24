@@ -44,9 +44,6 @@ export default {
     loadItems() {
       return this.$store.dispatch('routes/loadAll');
     },
-    post(form) {
-      return this.axios.post('/routes', form)
-    },
     async addRoute() {
       await this.axios.post('/routes', this.form);
       this.form = {

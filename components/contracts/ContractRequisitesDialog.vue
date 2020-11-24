@@ -4,7 +4,7 @@
     :actions="actions"
     :handle="handleClick"
   >
-    <contract-requisites-form v-model="editedValue.attributes" :final="final.attributes"/>
+    <contract-requisites-form v-model="editedValue.attributes" :final="final.attributes" :axios="axios"/>
   </dialog-card>
 </template>
 
@@ -15,7 +15,12 @@ import ContractRequisitesForm from "@/components/contracts/ContractRequisitesFor
 export default {
   name: "ContractRequisitesDialog",
   components: {ContractRequisitesForm},
-  mixins: [resourceDialog]
+  mixins: [resourceDialog],
+  props: {
+    axios: {
+      required: true
+    }
+  },
 }
 </script>
 
