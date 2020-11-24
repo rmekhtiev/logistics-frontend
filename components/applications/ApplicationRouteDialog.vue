@@ -4,7 +4,7 @@
     :actions="actions"
     :handle="handleClick"
   >
-    <application-route-form v-model="editedValue.attributes" :final="final.attributes"/>
+    <application-route-form v-model="editedValue.attributes" :final="final.attributes" :axios="axios"/>
   </dialog-card>
 </template>
 
@@ -15,7 +15,12 @@ import ApplicationRouteForm from "@/components/applications/ApplicationRouteForm
 export default {
   name: "ApplicationRouteDialog",
   components: {ApplicationRouteForm},
-  mixins: [resourceDialog]
+  props: {
+    axios: {
+      required: true
+    }
+  },
+  mixins: [resourceDialog],
 }
 </script>
 

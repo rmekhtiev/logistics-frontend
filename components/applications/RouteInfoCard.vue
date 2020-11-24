@@ -42,6 +42,7 @@
 <script>
 
 import ApplicationRouteDialog from "@/components/applications/ApplicationRouteDialog";
+import axios from "axios";
 
 export default {
   name: "RouteInfoCard",
@@ -52,24 +53,26 @@ export default {
   },
   computed: {
     route() {
-      return this.$store.getters['routes/byId']({id: this.application.attributes.route_id});
+      return this.$store.getters['routes/byId']({id: this.application.attributes.delivery_route});
     }
   },
   mounted() {
-    this.loadRoute(this.application.attributes.route_id);
+    this.loadRoute(this.application.attributes.delivery_route);
   },
   methods: {
     async addRoute() {
       const dialog = await this.$dialog.showAndWait(ApplicationRouteDialog, {
         final: this.application,
         persistent: true,
+        axios: this.$axios,
       })
 
       if (dialog !== false) {
         const form = dialog.attributes;
+        console.log(form)
         await this.$axios.put('/applications/' + this.application.id, form).then((response) => {
           console.log(response);
-          this.loadRoute(response.data.data.attributes.route_id);
+          this.loadRoute(response.data.data.attributes.delivery_route);
           this.loadApplication();
         });
       }
@@ -78,7 +81,7 @@ export default {
     async deleteRoute() {
       let form = {
         ...this.application.attributes,
-        route_id: null
+        delivery_route: null
       }
       await this.$axios.put('/applications/' + this.application.id, form).then((response) => {
         this.loadApplication();
