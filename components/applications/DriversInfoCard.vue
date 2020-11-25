@@ -16,7 +16,7 @@
           </v-list-item-content>
 
           <v-list-item-icon>
-            <v-btn icon small>
+            <v-btn icon small @click="deleteDriver(driver.id)">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -61,8 +61,8 @@ export default {
       }
     },
 
-    async deleteDriver() {
-
+    async deleteDriver(id) {
+      await this.$axios.delete(`applications/${this.application.id}/drivers/${id}`)
     },
     loadDrivers() {
       this.$store.dispatch('fetchDriversForApplication', this.application.id);

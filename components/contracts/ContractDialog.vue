@@ -4,16 +4,18 @@
     :actions="actions"
     :handle="handleClick"
   >
+    <contract-form :final="final.attributes" v-model="editedValue.attributes"/>
   </dialog-card>
 </template>
 
 <script>
 import resourceDialog from "@/mixins/resourceDialog";
-import ApplicationForm from "@/components/applications/ApplicationForm";
+import ContractForm from "@/components/contracts/ContractForm";
 
 export default {
   name: "ContractDialog",
-  mixins: [resourceDialog]
+  components: {ContractForm},
+  mixins: [resourceDialog],
 }
 </script>
 

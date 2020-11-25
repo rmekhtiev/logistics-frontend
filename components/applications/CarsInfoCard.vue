@@ -16,7 +16,7 @@
           </v-list-item-content>
 
           <v-list-item-icon>
-            <v-btn icon small>
+            <v-btn icon small @click="deleteCar(car.id)">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </v-list-item-icon>
@@ -59,8 +59,8 @@ export default {
       }
     },
 
-    async deleteCar() {
-
+    async deleteCar(id) {
+      await this.$axios.delete(`applications/${this.application.id}/cars/${id}`);
     },
     loadCars() {
       this.$store.dispatch('fetchCarsForApplication', this.application.id);
