@@ -60,7 +60,8 @@ export default {
     },
 
     async deleteCar(id) {
-      await this.$axios.delete(`applications/${this.application.id}/cars/${id}`);
+      await this.$store.dispatch('deleteCarFromApplication', {applicationId: this.application.id, carId: id});
+      await this.$store.dispatch('fetchCarsForApplication', this.application.id);
     },
     loadCars() {
       this.$store.dispatch('fetchCarsForApplication', this.application.id);

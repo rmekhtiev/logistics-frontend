@@ -5,6 +5,9 @@ export default {
         const drivers = res.data.data;
         ctx.commit('updateDrivers', drivers)
       })
+    },
+    async deleteDriverFromApplication(ctx, payload) {
+      await this.$axios.delete(`/applications/${payload.applicationId}/drivers/${payload.driverId}`)
     }
   },
   mutations: {

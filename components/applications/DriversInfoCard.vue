@@ -62,7 +62,8 @@ export default {
     },
 
     async deleteDriver(id) {
-      await this.$axios.delete(`applications/${this.application.id}/drivers/${id}`)
+      await this.$store.dispatch('deleteDriverFromApplication', {applicationId: this.application.id, driverId: id});
+      await this.$store.dispatch('fetchDriversForApplication', this.application.id);
     },
     loadDrivers() {
       this.$store.dispatch('fetchDriversForApplication', this.application.id);

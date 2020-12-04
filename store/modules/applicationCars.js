@@ -5,6 +5,9 @@ export default {
         const cars = res.data.data;
         ctx.commit('updateCars', cars)
       })
+    },
+    async deleteCarFromApplication(ctx, payload) {
+      await this.$axios.delete(`/applications/${payload.applicationId}/cars/${payload.carId}`)
     }
   },
   mutations: {
