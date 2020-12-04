@@ -31,6 +31,7 @@ module.exports = {
   plugins: [
     "~/plugins/reststate-vuex",
     '~/plugins/vue-i18n',
+    { src: "~/plugins/axios" }
   ],
 
   /*
@@ -39,6 +40,7 @@ module.exports = {
   buildModules: [
     // Simple usage
     '@nuxtjs/vuetify',
+    "@nuxtjs/toast",
   ],
   modules: [
     '@nuxtjs/axios',
@@ -48,11 +50,15 @@ module.exports = {
   axios: {
     host: 'localhost',
     port: 5000,
-    prefix: '/api/v1.0/',
+    prefix: '/api/v2.0/',
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
-    }
+    },
+  },
+
+  toast: {
+    duration: 3000
   },
 
   build: {

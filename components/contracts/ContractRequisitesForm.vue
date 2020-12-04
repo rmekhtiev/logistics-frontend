@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-autocomplete v-model="value.requisites_id" :items="items" item-text="attributes.name"
+    <v-autocomplete v-model="value.requisite_id" :items="items" item-text="attributes.name"
                     item-value="id" label="Введите реквизиты"/>
     <div class="mt-4">
       <div class="overline black--text">Создание нового реквизита</div>

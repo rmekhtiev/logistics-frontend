@@ -55,7 +55,7 @@ export default {
 
       if (dialog !== false) {
         const form = dialog.attributes;
-        await this.$axios.post(`applications/${this.application.id}/drivers`, form);
+        await this.$axios.post(`applications/${this.application.id}/drivers/${form.driver_id}`, form);
         this.loadDrivers();
         this.loadApplication();
       }

@@ -53,7 +53,7 @@ export default {
 
       if (dialog !== false) {
         const form = dialog.attributes;
-        await this.$axios.post(`applications/${this.application.id}/cars`, form);
+        await this.$axios.post(`applications/${this.application.id}/cars/${form.car_id}`, form);
         this.loadCars();
         this.loadApplication();
       }
