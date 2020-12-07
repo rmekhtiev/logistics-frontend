@@ -49,12 +49,17 @@ module.exports = {
 
   axios: {
     host: 'localhost',
-    port: 5000,
-    prefix: '/api/v2.0/',
+    port: "5000",
+    prefix: '/api/v3.0/',
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     },
+    proxy: true,
+  },
+
+  proxy: {
+    '/api/': "http://localhost:5000"
   },
 
   toast: {

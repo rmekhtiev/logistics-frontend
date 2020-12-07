@@ -19,7 +19,6 @@ export default function (nuxt) {
     }
     return response;
   }, error => {
-    $toast.error()
     switch (error.response.status) {
       case 409:
         $toast.error(`Conflict: ${error.response.data.message}`)

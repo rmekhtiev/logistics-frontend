@@ -5,7 +5,7 @@
     <v-card-title>
       <div class="overline">Заявка</div>
       <v-spacer/>
-      <v-btn icon color="primary" v-if="!application">
+      <v-btn icon color="primary" v-if="!application" @click="addApplications">
         <v-icon >mdi-plus</v-icon>
       </v-btn>
       <v-btn icon color="red" @click="deleteApplications" v-else>
@@ -60,7 +60,10 @@ export default {
       if (dialog !== false) {
         const form = dialog.attributes;
         await this.$axios.put('/contracts/' + this.contract.id, form).then((response) => {
-          this.loadApplication(response.data.data.attributes.application_id);
+          console.log(response)
+          if (response) {
+            this.loadApplication(response.data.data.attributes.application_id);
+          }
           this.loadContract();
         });
       }
