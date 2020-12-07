@@ -44,7 +44,8 @@ module.exports = {
   ],
   modules: [
     '@nuxtjs/axios',
-    'vuetify-dialog/nuxt'
+    'vuetify-dialog/nuxt',
+    '@nuxtjs/auth'
   ],
 
   axios: {
@@ -60,6 +61,31 @@ module.exports = {
 
   proxy: {
     '/api/': "http://localhost:5000"
+  },
+
+  router: {
+    middleware: ["auth"]
+  },
+
+  auth: {
+    redirect: {
+      login: "/auth/login",
+      logout: "/",
+      callback: "/auth/login",
+      home: "/"
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'auth/login', method: 'post', propertyName: 'auth_token' },
+          user: { url: "/auth/status", method: "get", propertyName: "data" },
+          logout: { url: "/auth/logout", method: "post" },
+        }
+      },
+      watchLoggedIn: true,
+      rewriteRedirects: true
+    },
+    plugins: [{ src: "~/plugins/axios" }]
   },
 
   toast: {
