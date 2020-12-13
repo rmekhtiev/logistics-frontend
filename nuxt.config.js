@@ -49,7 +49,7 @@ module.exports = {
   ],
 
   axios: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: "5000",
     prefix: '/api/v3.0/',
     headers: {
@@ -60,7 +60,7 @@ module.exports = {
   },
 
   proxy: {
-    '/api/': "http://localhost:5000"
+    '/api/': "http://0.0.0.0:5000"
   },
 
   router: {

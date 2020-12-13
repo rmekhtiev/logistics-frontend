@@ -10,7 +10,7 @@
 
 <script>
 
-import resourceDialog from '../../../logistics-frontend/mixins/resourceDialog'
+import resourceDialog from '@/mixins/resourceDialog'
 import DriverForm from "@/components/drivers/DriverForm";
 
 export default {
