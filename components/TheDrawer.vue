@@ -117,6 +117,16 @@ export default {
             }
           }
         }
+      },
+      {
+        title: 'Управление',
+        items: {
+          users: {
+            to: {
+              name: 'users'
+            }
+          }
+        }
       }
     ],
   }),

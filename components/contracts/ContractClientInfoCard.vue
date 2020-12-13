@@ -6,7 +6,7 @@
       <div class="overline">Клиент</div>
       <v-spacer/>
       <v-btn icon color="primary" v-if="!client">
-        <v-icon >mdi-plus</v-icon>
+        <v-icon @click="addClients">mdi-plus</v-icon>
       </v-btn>
       <v-btn icon color="red" @click="deleteClients" v-else>
         <v-icon>mdi-delete</v-icon>

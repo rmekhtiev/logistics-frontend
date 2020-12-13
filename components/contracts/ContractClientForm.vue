@@ -4,8 +4,11 @@
 </template>
 
 <script>
+import resourceForm from "@/mixins/resourceForm";
+
 export default {
   name: "ContractClientForm",
+  mixins: [resourceForm],
   computed: {
     items() {
       return this.$store.getters['clients/all'];
