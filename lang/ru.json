@@ -6,7 +6,8 @@
     "contacts": "Контактные лица",
     "cars": "Т/С",
     "contracts": "Договоры",
-    "clients": "Клиенты"
+    "clients": "Клиенты",
+    "users": "Пользователи"
   },
   "statuses": {
     "active": "Активная",
